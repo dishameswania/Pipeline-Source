@@ -3,7 +3,7 @@ resources:
     type: GitRepo
     configuration:
       path: dishameswania/artifactory-go-example
-      gitProvider: github-disha
+      gitProvider: GithubDisha
   - name: go_build_info
     type: BuildInfo
     configuration:
