@@ -111,12 +111,12 @@ pipelines:
       - name: my_distribute
         type: DistributeReleaseBundle
         configuration:
-          dryRun: false
+          dryRun: true
           inputResources:
             - name: release_bundle_new
-              trigger: false
+              trigger: true
             - name: Rule1
-              trigger: false
+              trigger: true
             
         execution:
           onSuccess:
