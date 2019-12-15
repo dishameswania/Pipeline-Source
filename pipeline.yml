@@ -1,18 +1,39 @@
 resources:
-  - name:       Git
-    type:       GitRepo
+  - name: build_info_nuget
+    type: BuildInfo
     configuration:
-      gitProvider:  GithubDisha
-      repository:   GithubDisha
-      path:         dishameswania/pipeline-source
-    buildOn:
-      commit: true     
+      sourceArtifactory:    artdisha
+      buildName:            nugetTry
+      buildNumber:          1
+      
+  - name:       release_bundle_new
+    type:       ReleaseBundle
+    configuration:
+      sourceDistribution:    dist
+      name:                 release4
+      version:              1.0.0
+      isSigned:             true
+      
+  - name:           Rule1
+    type:           DistributionRule
+    configuration:
+      sourceDistribution:    dist
+      serviceName:          Edge
+      siteName:             EU
+      cityName:             Moscow
+      countryCodes:
+        - EU
 
 pipelines:
-  - name: pipe1
-    steps:
-    - name: try1
-      type: Bash
+  - name: my_distribute
+        type: DistributeReleaseBundle
+        configuration:
+          dryRun: true
+          inputResources:
+            - name: release_bundle_new
+              trigger: false
+            - name: Rule1
+              trigger: false
             
       execution:
           onExecute:
