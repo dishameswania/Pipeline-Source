@@ -87,9 +87,9 @@ pipelines:
         type: XrayScan
         configuration:
           inputResources:
-            - name: build_info_nuget
+            - name: docker_build_info
           outputResources:
-            - name: build_info_nuget_new 
+            - name: docker_build_info_new 
             
         execution:
           onFailure: 
@@ -104,7 +104,7 @@ pipelines:
           releaseBundleVersion:     1.0.0
           sign: true
           inputResources: 
-            - name: build_info_nuget_new
+            - name: docker_build_info_new
           outputResources: 
             - name: release_bundle_new
             
