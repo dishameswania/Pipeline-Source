@@ -62,7 +62,7 @@ pipelines:
       - name: my_distribute
         type: DistributeReleaseBundle
         configuration:
-          dryRun: true
+          dryRun: false
           inputResources:
             - name: release_bundle_new
               trigger: false
