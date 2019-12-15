@@ -25,7 +25,7 @@ resources:
         - IN
 
 pipelines:
-  - name: xray and distribution
+  - name: xrayDistribution
     steps:
       - name: xray
         type: XrayScan
