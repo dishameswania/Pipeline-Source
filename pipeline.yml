@@ -1,11 +1,4 @@
 resources:
-  - name: build_info_nuget
-    type: BuildInfo
-    configuration:
-      sourceArtifactory:    artdisha
-      buildName:            nugetTry
-      buildNumber:          1
-      
   - name:       release_bundle_new
     type:       ReleaseBundle
     configuration:
