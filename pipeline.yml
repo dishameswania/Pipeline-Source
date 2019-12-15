@@ -37,7 +37,7 @@ pipelines:
             - name: Rule1
               trigger: false
             
-      execution:
+        execution:
           onExecute:
             - echo "hey, I am running"
           onSuccess:
