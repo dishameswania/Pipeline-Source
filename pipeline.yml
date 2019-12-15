@@ -6,6 +6,14 @@ resources:
       buildName:            nuget_trial
       buildNumber:          1
       
+  - name:       release_bundle_new
+    type:       ReleaseBundle
+    configuration:
+      sourceDistribution:    dist
+      name:                 release5
+      version:              1.0.0
+      isSigned:             true
+      
   - name:           Rule1
     type:           DistributionRule
     configuration:
@@ -38,7 +46,7 @@ pipelines:
           releaseBundleVersion:     1.0.0
           sign: true
           inputResources: 
-            - name: nuget_trial
+            - name: build_info_nuget
           outputResources: 
             - name: release_bundle_new
             
