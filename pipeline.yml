@@ -26,14 +26,14 @@ resources:
 
 pipelines:
   - name: my_distribute
-      type: DistributeReleaseBundle
-      configuration:
-        dryRun: true
-        inputResources:
-          - name: release_bundle_new
-            trigger: false
-          - name: Rule1
-            trigger: false
+    type: DistributeReleaseBundle
+    configuration:
+      dryRun: true
+      inputResources:
+        - name: release_bundle_new
+          trigger: false
+        - name: Rule1
+          trigger: false
             
       execution:
           onExecute:
