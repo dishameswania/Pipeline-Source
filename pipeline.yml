@@ -3,16 +3,8 @@ resources:
     type: BuildInfo
     configuration:
       sourceArtifactory:    artdisha
-      buildName:            nugetTry
+      buildName:            nuget_trial
       buildNumber:          1
-      
-  - name:       release_bundle_new
-    type:       ReleaseBundle
-    configuration:
-      sourceDistribution:    dist
-      name:                 release4
-      version:              1.0.0
-      isSigned:             true
       
   - name:           Rule1
     type:           DistributionRule
@@ -38,6 +30,17 @@ pipelines:
             - echo "Vulnerabilities found - please take a look at your watch violations in Xray"
           onSuccess:
             - echo "No vulnerabilities - good to proceed"
+            
+      - name: create_distribution
+        type: CreateReleaseBundle
+        configuration: 
+          releaseBundleName:        release5
+          releaseBundleVersion:     1.0.0
+          sign: true
+          inputResources: 
+            - name: nuget_trial
+          outputResources: 
+            - name: release_bundle_new
             
       - name: my_distribute
         type: DistributeReleaseBundle
