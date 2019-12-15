@@ -12,10 +12,10 @@ resources:
     configuration:
       sourceDistribution:    dist
       serviceName:          Edge
-      siteName:             EU
-      cityName:             Moscow
+      siteName:             IN
+      cityName:             Bengaluru
       countryCodes:
-        - EU
+        - IN
 
 pipelines:
   - name: distribution
