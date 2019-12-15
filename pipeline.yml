@@ -6,7 +6,26 @@ resources:
       buildName:            nugetTry
       buildNumber:          1
       
-  - name: build_info_nuget_new
+  - name: dockerbuild_repo
+    type: GitRepo
+    configuration:
+      path: dishameswania/ArtifactoryTest
+      gitProvider: GithubDisha
+      
+  - name: docker_build_info
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: artdisha
+      buildName: docker_example
+      buildNumber: 1
+      
+  - name: files
+    type: FileSpec
+    configuration:
+      sourceArtifactory: artdisha
+      pattern: nuget-local/*
+      
+  - name: docker_build_info_new
     type: BuildInfo
     configuration:
       sourceArtifactory:    artdisha
@@ -34,6 +53,36 @@ resources:
 pipelines:
   - name: xrayDistribution
     steps:
+      - name: build_docker
+        type: DockerBuild
+        configuration:
+          dockerFileLocation: .
+          dockerFileName: Dockerfile
+          dockerImageName: 34.93.249.25:8081/docker/disha
+          dockerImageTag: $pipeline_name.$run_number
+          inputResources:
+            - name: dockerbuild_repo
+            - name: files
+          integrations:
+            - name: artdisha
+            
+      - name: push_docker_image
+        type: DockerPush
+        configuration:
+          targetRepository: docker
+          integrations:
+            - name: artdisha
+          inputSteps:
+            - name: build_docker
+            
+      - name: publish_docker_build
+        type: PublishBuildInfo
+        configuration:
+          inputSteps:
+            - name: push_docker_image
+          outputResources:
+            - name: docker_build_info
+            
       - name: xray
         type: XrayScan
         configuration:
