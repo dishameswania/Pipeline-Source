@@ -1,4 +1,11 @@
 resources:
+  - name: build_info_nuget
+    type: BuildInfo
+    configuration:
+      sourceArtifactory:    artdisha
+      buildName:            nugetTry
+      buildNumber:          1
+      
   - name:       release_bundle_new
     type:       ReleaseBundle
     configuration:
@@ -18,8 +25,20 @@ resources:
         - IN
 
 pipelines:
-  - name: distribution
+  - name: xray and distribution
     steps:
+      - name: xray
+        type: XrayScan
+        configuration:
+          inputResources:
+            - name: build_info_nuget
+            
+        execution:
+          onFailure: 
+            - echo "Vulnerabilities found - please take a look at your watch violations in Xray"
+          onSuccess:
+            - echo "No vulnerabilities - good to proceed"
+            
       - name: my_distribute
         type: DistributeReleaseBundle
         configuration:
