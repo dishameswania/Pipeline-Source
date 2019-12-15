@@ -3,7 +3,14 @@ resources:
     type: BuildInfo
     configuration:
       sourceArtifactory:    artdisha
-      buildName:            nuget_trial
+      buildName:            nuget-trial
+      buildNumber:          1
+      
+  - name: build_info_nuget_new
+    type: BuildInfo
+    configuration:
+      sourceArtifactory:    artdisha
+      buildName:            nuget-trial
       buildNumber:          1
       
   - name:       release_bundle_new
@@ -32,6 +39,8 @@ pipelines:
         configuration:
           inputResources:
             - name: build_info_nuget
+          outputResources:
+            - name: build_info_nuget_new 
             
         execution:
           onFailure: 
@@ -46,7 +55,7 @@ pipelines:
           releaseBundleVersion:     1.0.0
           sign: true
           inputResources: 
-            - name: build_info_nuget
+            - name: build_info_nuget_new
           outputResources: 
             - name: release_bundle_new
             
