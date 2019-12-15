@@ -101,7 +101,7 @@ pipelines:
         type: CreateReleaseBundle
         configuration: 
           releaseBundleName:        release5
-          releaseBundleVersion:     1.0.0
+          releaseBundleVersion:     1.1.0
           sign: true
           inputResources: 
             - name: docker_build_info_new
