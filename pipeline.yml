@@ -3,14 +3,14 @@ resources:
     type: BuildInfo
     configuration:
       sourceArtifactory:    artdisha
-      buildName:            nuget-trial
+      buildName:            nugetTry
       buildNumber:          1
       
   - name: build_info_nuget_new
     type: BuildInfo
     configuration:
       sourceArtifactory:    artdisha
-      buildName:            nuget-trial
+      buildName:            nugetTry
       buildNumber:          1
       
   - name:       release_bundle_new
